@@ -1,5 +1,6 @@
 require 'origen'
 require_relative '../config/application.rb'
+require 'origen_testers'
 module OrigenApb
   # THIS FILE SHOULD ONLY BE USED TO LOAD RUNTIME DEPENDENCIES
   # If this plugin has any development dependencies (e.g. dummy DUT or other models that are only used
@@ -14,5 +15,10 @@ module OrigenApb
   # explicitly require it up above and then let this take care of the rest.
   Dir.glob("#{File.dirname(__FILE__)}/origen_apb/**/*.rb").sort.each do |file|
     require file
+  end
+
+  # Returns an instance of the OrigenApb::Driver
+  def apb
+    @origen_apb ||= Driver.new(self)
   end
 end

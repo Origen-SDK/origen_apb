@@ -27,11 +27,55 @@ __NOTE:__  In the case of a plugin, you will also need to <code>require '<%= Ori
 
 ### How To Use
 
-Add quickstart documentation here...
+The driver supports sub_block instantiation and DUTs with multiple APB slaves.
+
+Here is an example integration:
+
+~~~ruby
+class Pioneer
+
+  include Origen::TopLevel
+
+  def initialize
+    add_pin :psel
+    add_pin :paddr
+    add_pin :pwrite
+    add_pin :prdata
+    add_pin :penable
+    add_pin :pstrb
+
+    add_pin :psel1
+    add_pin :paddr1
+    add_pin :pwrite1
+    add_pin :prdata1
+    add_pin :penable1
+    add_pin :pstrb1
 
 
-### How To Setup a Development Environment
+    sub_block :apb, class_name: 'OrigenApb::Driver',
+                     psel_pin:           pin(:psel),
+                     paddr_pin:          pin(:paddr),
+                     pwrite_pin:         pin(:pwrite),
+                     prdata_pin:         pin(:prdata)
+                     penable_pin:        pin(:penable)
+                     pstrb_pin:          pin(:pstrb)
 
-Describe how a developer would setup a new workspace for this plugin...
+    # create a driver for a 2nd port like this
+    # note different configuration settings can be used
+    sub_block :apb2, class_name: 'OrigenApb::Driver',
+                     psel_pin:           pin(:psel1),
+                     paddr_pin:          pin(:paddr1),
+                     pwrite_pin:         pin(:pwrite1),
+                     prdata_pin:         pin(:prdata1)
+                     penable_pin:        pin(:penable1)
+                     pstrb_pin:          pin(:pstrb1)
+  end
+
+end
+
+dut.apb           # => apb driver for the first port (psel, paddr, pwrite, prdata, penable, pstrb)
+dut.apb2          # => apb driver for the second port (psel1, paddr1, pwrite1, prdata1, penable1, pstrb1)
+~~~
+
 
 % end

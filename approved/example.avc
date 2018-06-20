@@ -1,0 +1,74 @@
+# ***************************************************************************
+# GENERATED:
+#   Time:    19-Jun-2018 19:54PM
+#   By:      Priyavadan Kumar
+#   Command: origen g example -t dev.rb -e v93k.rb
+# ***************************************************************************
+# ENVIRONMENT:
+#   Application
+#     Version:   0.1.0
+#   Origen
+#     Source:    https://github.com/Origen-SDK/origen
+#     Version:   0.33.1
+#   Plugins
+#     atp:                      1.1.2
+#     origen_doc_helpers:       0.6.2
+#     origen_testers:           0.19.0
+#     origen_updater:           0.7.0
+# ***************************************************************************
+FORMAT TCLK TDI TDO TMS RESETB PCLK PRESET paddr pprot PSEL PENABLE PWRITE pwdata pstrb PREADY prdata PSLVERR;
+#                                                   t t t t r p p p                                p   p p p p                                p    p p                                p
+#                                                   c d d m e c r a                                p   s e w w                                s    r r                                s
+#                                                   l i o s s l e d                                r   e n r d                                t    e d                                l
+#                                                   k       e k s d                                o   l a i a                                r    a a                                v
+#                                                           t   e r                                t     b t t                                b    d t                                e
+#                                                           b   t                                        l e a                                     y a                                r
+#                                                                                                        e                                                                            r
+# Wait for 240ns
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R6 Wait for 240ns;
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R5 ;
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R4 ;
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R3 ;
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R2 ;
+R1                       apb                        0 0 X 0 0 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX X X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXXX X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R1 ;
+# Write to top-level register using reg model
+# ==== APB Write Transaction ====
+# Reg: top_reg Addr: 0x20000000 Data: 0x5555aaaa
+R1                       apb                        0 0 X 0 1 X X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # Write to top-level register using reg model==== APB Write Transaction ====Reg: top_reg Addr: 0x20000000 Data: 0x5555aaaa;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 1 1 1 01010101010101011010101010101010 1111 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+# Write to top-level register using data/address
+# ==== APB Write Transaction ====
+# Addr: 0x20000000 Data: 0xaaaa5555
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # Write to top-level register using data/address==== APB Write Transaction ====Addr: 0x20000000 Data: 0xaaaa5555;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 1 1 1 10101010101010100101010101010101 1111 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+# Read from top-level register using data/address
+# ==== APB Read Transaction ====
+# Addr: 0x20000000 Data: 0xaaaa5555
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # Read from top-level register using data/address==== APB Read Transaction ====Addr: 0x20000000 Data: 0xaaaa5555;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 1 1 0 00000000000000000000000000000000 0000 X HLHLHLHLHLHLHLHLLHLHLHLHLHLHLHLH X # ;
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+# Write to block-level register
+# ==== APB Write Transaction ====
+# Reg: control Addr: 0x22000000 Data: 0xba5eba11
+R1                       apb                        0 0 X 0 1 X X 00100000000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # Write to block-level register==== APB Write Transaction ====Reg: control Addr: 0x22000000 Data: 0xba5eba11;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000000 XXX 1 1 1 10111010010111101011101000010001 1111 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+# Read from block-level register
+# ==== APB Read Transaction ====
+# Reg: status Addr: 0x22000004 Data: 0x220000
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000000 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # Read from block-level register==== APB Read Transaction ====Reg: status Addr: 0x22000004 Data: 0x220000;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 1 1 0 00000000000000000000000000000000 0000 X LLLLLLLLLLHLLLHLLLLLLLLLLLLLLLLL X # ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # ;
+# Wait for 240ns
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R6 Wait for 240ns;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R5 ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R4 ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R3 ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R2 ;
+R1                       apb                        0 0 X 0 1 X X 00100010000000000000000000000100 XXX 0 0 0 00000000000000000000000000000000 0000 X XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX X # R1 ;
+# ######################################################################
+# ## Pattern complete
+# ######################################################################
+SQPG STOP;

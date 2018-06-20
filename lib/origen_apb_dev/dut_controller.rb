@@ -50,9 +50,5 @@ module OrigenApbDev
     def read_register(reg_or_val, options = {})
       apb.read_register(reg_or_val, options)
     end
-
-    # Pin driver layer of APB protocol, used by APB
-    def apb_trans(options = {})
-    end
   end
 end
