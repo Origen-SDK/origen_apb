@@ -116,6 +116,7 @@ module OrigenApb
       @pwrite_pin.drive(0)
       @psel_pin.drive(1) # User or Test (0 or 1)
       @pstrb_pin.drive(0)
+      tester.wait time_in_cycles: 3
       @penable_pin.drive(1)
       @prdata_pin.assert(options[:pdata])
       tester.cycle
@@ -143,6 +144,7 @@ module OrigenApb
       @psel_pin.drive(1) # User or Test (0 or 1)
       @pstrb_pin.drive(15)
       @pwdata_pin.drive(options[:pdata])
+      tester.wait time_in_cycles: 3
       @penable_pin.drive(1)
       tester.cycle
       @prdata_pin.dont_care
